@@ -1,0 +1,21 @@
+{
+  "name": "goodreads-api",
+  "version": "1.0.0",
+  "description": "Report generator for Goodreads database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "react"
+  ],
+  "author": "Lukasz Zagroba",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loader": "^2.4.7"
+  }
+}
