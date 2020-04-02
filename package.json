@@ -4,7 +4,9 @@
   "description": "Report generator for Goodreads database",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
   },
   "keywords": [
     "api",
@@ -14,8 +16,31 @@
   "author": "Lukasz Zagroba",
   "license": "ISC",
   "dependencies": {
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^4.0.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-loader": "^2.4.7"
-  }
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^2.0.2",
+    "react-loader": "^2.4.7",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lzag/goodreads-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lzag/goodreads-api/issues"
+  },
+  "homepage": "https://github.com/lzag/goodreads-api#readme"
 }
