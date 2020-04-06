@@ -1,7 +1,6 @@
 import ReactDom from 'react-dom';
 import React from 'react';
-import Header from './js/components/Header';
+import App from './js/components/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-alert('Hey this is loaded');
-ReactDom.render(<Header />, document.getElementById('form'));
-console.log('executed');
+ReactDom.render(<App />, document.getElementById('main'));

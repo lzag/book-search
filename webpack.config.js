@@ -17,10 +17,16 @@ module.exports = {
           loader: 'html-loader',
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
-plugins: [new HtmlWebpackPlugin(
-	{template: "./src/index.html",
-	filename: "index.html"}
-)]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+  ],
 };
