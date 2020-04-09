@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 const ThemeContext = React.createContext('Hello');
 
-export class MyProvider extends React.Component {
+export class MyProvider extends Component {
   constructor() {
     super();
     this.state = {
-      someValue: 'This is some value',
+      theme: 'dark',
     };
   }
 
   render() {
-    console.log(this.state);
+    console.log('The theme is :', this.state.theme);
     return (
       <ThemeContext.Provider value={this.state}>
         {this.props.children}
