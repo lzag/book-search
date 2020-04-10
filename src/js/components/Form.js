@@ -3,13 +3,15 @@ import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
 import SearchButton from './SearchButton';
 import axios from 'axios';
+import { Consumer } from './Context';
 
 class Form extends Component {
   constructor() {
     super();
   }
-  onSubmitHandler(e) {
+  onSubmitHandler(e, query) {
     e.preventDefault();
+    console.log(query);
     instance
       .get('https://jsonplaceholder.typicode.com/posts/1')
       .then((results) => {
@@ -18,11 +20,15 @@ class Form extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.onSubmitHandler}>
-        <SearchInput />
-        <SearchButton />
-        <SearchResults />
-      </form>
+      <Consumer>
+        {(value) => (
+          <form onSubmit={(e) => this.onSubmitHandler(e, value.query)}>
+            <SearchInput />
+            <SearchButton />
+            <SearchResults />
+          </form>
+        )}
+      </Consumer>
     );
   }
 }

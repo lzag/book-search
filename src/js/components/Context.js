@@ -7,6 +7,18 @@ export class MyProvider extends Component {
     super();
     this.state = {
       theme: 'dark',
+      query: '',
+      results: [
+        {
+          cardTitle: 'Example result',
+          cardSubtitle: 'Example subtitle',
+          cardDescription: 'Example description',
+          cardId: 'Example ID',
+        },
+      ],
+      dispatch: (action, query) => {
+        return this.setState({ query: query });
+      },
     };
   }
 
