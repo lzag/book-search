@@ -5,24 +5,38 @@ import SearchButton from './SearchButton';
 import axios from 'axios';
 import { Consumer } from './Context';
 
+const instance = axios.create({
+  baseURL: 'http://localhost:8888',
+});
 class Form extends Component {
   constructor() {
     super();
   }
-  onSubmitHandler(e, query) {
+  onSubmitHandler(e, query, updateResults) {
     e.preventDefault();
     console.log(query);
     instance
-      .get('https://jsonplaceholder.typicode.com/posts/1')
+      .post('/goodreads', {
+        method: 'GET',
+        endpoint: '/search/index.xml',
+        parameters: { q: query },
+        ['search[field]']: 'title',
+      })
       .then((results) => {
-        console.log(results);
+        const works = results.data.GoodreadsResponse.search[0].results[0].work;
+        console.log(results.data.GoodreadsResponse.search[0].results[0].work);
+        updateResults(works);
       });
   }
   render() {
     return (
       <Consumer>
         {(value) => (
-          <form onSubmit={(e) => this.onSubmitHandler(e, value.query)}>
+          <form
+            onSubmit={(e) =>
+              this.onSubmitHandler(e, value.query, value.updateResults)
+            }
+          >
             <SearchInput />
             <SearchButton />
             <SearchResults />
