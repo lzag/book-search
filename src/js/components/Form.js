@@ -14,18 +14,16 @@ class Form extends Component {
   }
   onSubmitHandler(e, query, updateResults) {
     e.preventDefault();
-    console.log(query);
     instance
       .post('/goodreads', {
         method: 'GET',
         endpoint: '/search/index.xml',
-        parameters: { q: query },
-        ['search[field]']: 'title',
+        parameters: { q: query, ['search[field]']: 'author' },
       })
       .then((results) => {
         const works = results.data.GoodreadsResponse.search[0].results[0].work;
         console.log(results.data.GoodreadsResponse.search[0].results[0].work);
-        updateResults(works);
+        if (works) return updateResults(works);
       });
   }
   render() {
@@ -40,6 +38,7 @@ class Form extends Component {
             <SearchInput />
             <SearchButton />
             <SearchResults />
+            <button type="submit">Search</button>
           </form>
         )}
       </Consumer>

@@ -34,6 +34,15 @@ class SearchResults extends Component {
                     <a href={href} className="card-link">
                       See on Goodreads
                     </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        value.toggleModal(e, result.best_book[0].id[0]);
+                      }}
+                      className="card-link"
+                    >
+                      More Information
+                    </a>
                   </div>
                 </div>
               );

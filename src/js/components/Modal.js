@@ -52,6 +52,10 @@ class Modal extends Component {
           return (
             <React.Fragment>
               <div
+                onClick={(e) => {
+                  if (e.target.id !== 'myModal') return;
+                  value.toggleModal();
+                }}
                 id="myModal"
                 style={value.isModalOpen ? styleModalOpen : styleModalClosed}
               >
@@ -65,7 +69,9 @@ class Modal extends Component {
                   >
                     &times;
                   </span>
-                  <SingleBookCard />
+                  {value.isModalOpen && (
+                    <SingleBookCard bookId={value.bookId} />
+                  )}
                 </div>
               </div>
             </React.Fragment>

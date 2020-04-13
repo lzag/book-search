@@ -9,7 +9,8 @@ export class MyProvider extends Component {
     this.state = {
       isModalOpen: true,
       theme: 'dark',
-      query: '',
+      bookId: '2956',
+      query: 'Twain',
       results: [
         {
           id: ['1835605'],
@@ -46,8 +47,8 @@ export class MyProvider extends Component {
       updateResults: (results) => {
         return this.setState({ results: results });
       },
-      toggleModal: () => {
-        this.setState({ isModalOpen: !this.state.isModalOpen });
+      toggleModal: (e, bookId) => {
+        this.setState({ isModalOpen: !this.state.isModalOpen, bookId: bookId });
       },
     };
   }
