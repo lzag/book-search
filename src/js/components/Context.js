@@ -5,7 +5,9 @@ const ThemeContext = React.createContext('Hello');
 export class MyProvider extends Component {
   constructor() {
     super();
+    this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.state = {
+      isModalOpen: true,
       theme: 'dark',
       query: '',
       results: [
@@ -44,11 +46,19 @@ export class MyProvider extends Component {
       updateResults: (results) => {
         return this.setState({ results: results });
       },
+      toggleModal: () => {
+        this.setState({ isModalOpen: !this.state.isModalOpen });
+      },
     };
   }
-
+  componentDidMount() {
+    window.addEventListener('keydown', this.onEscKeyDown, false);
+  }
+  onEscKeyDown(e) {
+    if (e.key !== 'Escape') return;
+    this.setState({ isModalOpen: false });
+  }
   render() {
-    console.log('The theme is :', this.state.theme);
     return (
       <ThemeContext.Provider value={this.state}>
         {this.props.children}

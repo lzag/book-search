@@ -3,6 +3,9 @@ import Header from './Header';
 import Form from './Form';
 import Stylesheet from './Stylesheet';
 import SearchResults from './SearchResults';
+import Navbar from './Navbar';
+import Modal from './Modal';
+import ModalButton from './ModalButton.js';
 import { MyProvider } from './Context';
 
 const cssDark = '../../../src/css/bootstrap.min.css';
@@ -26,6 +29,9 @@ class App extends Component {
     return (
       <MyProvider value={this.state}>
         <div>
+          <Navbar />
+          <ModalButton />
+          <Modal />
           <Header />
           <Form />
           <button onClick={this.changeTheme.bind(this)}>Change theme</button>
