@@ -9,7 +9,7 @@ class Header extends Component {
         {(value) => {
           return (
             <div>
-              <h1>Header</h1>
+              <h1>Goodreads Search and Report App</h1>
               <div>{value.someValue}</div>
             </div>
           );

@@ -11,6 +11,7 @@ export class MyProvider extends Component {
       theme: 'dark',
       bookId: '2956',
       query: 'Twain',
+      history: ['Finn', 'Quijote'],
       results: [
         {
           id: ['1835605'],
@@ -44,11 +45,19 @@ export class MyProvider extends Component {
       dispatch: (action, query) => {
         return this.setState({ query: query });
       },
-      updateResults: (results) => {
-        return this.setState({ results: results });
+      updateResults: (results, query) => {
+        return this.setState({
+          results: results,
+          history: [...new Set([...this.state.history, query])],
+        });
       },
       toggleModal: (e, bookId) => {
         this.setState({ isModalOpen: !this.state.isModalOpen, bookId: bookId });
+      },
+      deleteHistory: (el) => {
+        const oldHistory = [...this.state.history];
+        const newHistory = oldHistory.filter((item) => item !== el);
+        this.setState({ history: newHistory });
       },
     };
   }

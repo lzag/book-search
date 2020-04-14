@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Modal from './Modal';
 import ModalButton from './ModalButton.js';
 import { MyProvider } from './Context';
+import RecentSearches from './RecentSearches';
 
 const cssDark = '../../../src/css/bootstrap.min.css';
 const cssLight = '../../../src/css/bootstrap-light.min.css';
@@ -28,13 +29,14 @@ class App extends Component {
   render() {
     return (
       <MyProvider value={this.state}>
-        <div>
+        <div className="container">
           <Navbar />
+          <button onClick={this.changeTheme.bind(this)}>Change theme</button>
           <ModalButton />
           <Modal />
           <Header />
+          <RecentSearches />
           <Form />
-          <button onClick={this.changeTheme.bind(this)}>Change theme</button>
           <Stylesheet link={this.state.css} />
         </div>
       </MyProvider>
