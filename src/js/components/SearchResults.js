@@ -7,12 +7,16 @@ class SearchResults extends Component {
     return (
       <Consumer>
         {(value) => {
-          if (!value.results) {
+          if (value.currentSearch[0]['total-results'][0] == '0') {
             return <div>Sorry, there were no results for your query :( </div>;
           }
           return (
             <React.Fragment>
-              {value.results.map((result) => {
+              <p>
+                There have been {value.currentSearch[0]['total-results']}{' '}
+                results for the query "{value.currentSearch[0].query}"
+              </p>
+              {value.currentSearch[0].results[0].work.map((result) => {
                 return (
                   <ResultCard
                     key={result.id[0]}

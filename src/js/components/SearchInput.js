@@ -29,6 +29,7 @@ class SearchInput extends Component {
               }}
               id="author-search-form"
               type="text"
+              placeholder="Please input the title of the book..."
             />
           </div>
         )}

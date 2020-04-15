@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from './Context';
 import { v4 as uv4 } from 'uuid';
-
-const closeBtn = {
-  cursor: 'pointer',
-};
+import RecentResultsItem from './RecentResultsItem';
 
 class RecentSearches extends Component {
   render() {
@@ -13,21 +10,20 @@ class RecentSearches extends Component {
         {(value) => {
           return (
             <div>
-              <div> These are your recent searches: </div>
+              <div> Your recent searches: </div>
               <div>
-                {value.history.map((item) => {
+                {Object.entries(value.history).map((item, index) => {
+                  const badgeClass =
+                    item[1].results != '0'
+                      ? 'badge badge-primary m-1'
+                      : 'badge badge-danger m-1';
                   return (
-                    <span className="badge badge-primary m-1" key={uv4()}>
-                      {item}
-                      <i
-                        name={item}
-                        className="fas fa-times p-1"
-                        style={closeBtn}
-                        onClick={(e) => {
-                          value.deleteHistory(item);
-                        }}
-                      ></i>
-                    </span>
+                    <RecentResultsItem
+                      key={uv4()}
+                      className={badgeClass}
+                      results={item[1].results}
+                      itemName={item[0]}
+                    />
                   );
                 })}
               </div>
