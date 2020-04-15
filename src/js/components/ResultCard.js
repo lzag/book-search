@@ -21,17 +21,17 @@ class ResultCard extends Component {
           return (
             <div className="card" style={style}>
               <div className="card-body">
-                <h5 className="card-title">
+                <h5
+                  onClick={(e) => {
+                    this.state.collapsed === 'none'
+                      ? this.setState({ collapsed: 'block' })
+                      : this.setState({ collapsed: 'none' });
+                  }}
+                  className="card-title"
+                  style={{ cursor: 'pointer' }}
+                >
                   <span>
-                    <i
-                      style={{ cursor: 'pointer' }}
-                      className="fas fa-chevron-down px-2"
-                      onClick={(e) => {
-                        this.state.collapsed === 'none'
-                          ? this.setState({ collapsed: 'block' })
-                          : this.setState({ collapsed: 'none' });
-                      }}
-                    ></i>
+                    <i className="fas fa-chevron-down px-2"></i>
                   </span>
                   {title}
                 </h5>
