@@ -8,6 +8,8 @@ import Modal from './Modal';
 import ModalButton from './ModalButton.js';
 import { MyProvider } from './Context';
 import RecentSearches from './RecentSearches';
+import NotFound from './NotFound';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 const cssDark = '../../../src/css/bootstrap.min.css';
 const cssLight = '../../../src/css/bootstrap-light.min.css';
@@ -29,16 +31,23 @@ class App extends Component {
   render() {
     return (
       <MyProvider value={this.state}>
-        <div className="container">
-          <Navbar />
-          <button onClick={this.changeTheme.bind(this)}>Change theme</button>
-          <ModalButton />
-          <Modal />
-          <Header />
-          <RecentSearches />
-          <Form />
-          <Stylesheet link={this.state.css} />
-        </div>
+        <Router>
+          <div className="container">
+            <Navbar />
+            <button onClick={this.changeTheme.bind(this)}>Change theme</button>
+            <ModalButton />
+            <Modal />
+            <Header />
+            <RecentSearches />
+            <Form />
+            <Stylesheet link={this.state.css} />
+            <Switch>
+              <Route exact path="/" component={Header} />
+              <Route path="/goodreads" component={Form} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </Router>
       </MyProvider>
     );
   }

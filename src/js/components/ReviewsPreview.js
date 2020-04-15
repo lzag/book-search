@@ -4,7 +4,7 @@ const goodreadsApi = axios.create({
   baseURL: 'http://localhost:8888',
 });
 
-class SingleBookCard extends Component {
+class ReviewsPreview extends Component {
   constructor() {
     super();
     this.state = {};
@@ -65,4 +65,4 @@ class SingleBookCard extends Component {
     }
   }
 }
-export default SingleBookCard;
+export default ReviewsPreview;

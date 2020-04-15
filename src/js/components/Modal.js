@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from './Context';
 import ReactDom from 'react-dom';
-import SingleBookCard from './SingleBookCard';
+import ReviewsPreview from './ReviewsPreview';
 
 const styleModalOpen = {
   display: 'block' /* Hidden by default */,
@@ -70,7 +70,7 @@ class Modal extends Component {
                     &times;
                   </span>
                   {value.isModalOpen && (
-                    <SingleBookCard bookId={value.bookId} />
+                    <ReviewsPreview bookId={value.bookId} />
                   )}
                 </div>
               </div>
