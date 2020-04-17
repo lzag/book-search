@@ -25,6 +25,7 @@ class RecentResultsItem extends Component {
             <span
               onClick={(e) => {
                 value.updateResults(this.props.itemName);
+                this.props.history.push('/results/page/1');
               }}
               className={this.props.className}
               style={this.state.hover ? tagHover : button}

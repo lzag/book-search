@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Consumer } from './Context';
 import ResultCard from './ResultCard';
+import Pagination from './Pagination';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class SearchResults extends Component {
   render() {
@@ -16,6 +18,17 @@ class SearchResults extends Component {
                 There have been {value.currentSearch[0]['total-results']}{' '}
                 results for the query "{value.currentSearch[0].query}"
               </p>
+              <Route
+                path="/results/page/:num"
+                render={(props) => {
+                  return (
+                    <Pagination
+                      {...props}
+                      results={value.currentSearch[0]['total-results']}
+                    />
+                  );
+                }}
+              />
               {value.currentSearch[0].results[0].work.map((result) => {
                 return (
                   <ResultCard

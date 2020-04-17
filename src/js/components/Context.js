@@ -7,8 +7,9 @@ const instance = axios.create({
 });
 
 export class MyProvider extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(this.props);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.state = {
       isModalOpen: false,
@@ -662,7 +663,7 @@ export class MyProvider extends Component {
                 results: [currentSearch[0]['total-results']],
               },
             };
-            return this.setState({
+            this.setState({
               query: query,
               currentSearch: currentSearch,
               history: newHistory,

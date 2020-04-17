@@ -4,10 +4,12 @@ import SearchResults from './SearchResults';
 import SearchButton from './SearchButton';
 import axios from 'axios';
 import { Consumer } from './Context';
+import { Route } from 'react-router-dom';
 
 class Form extends Component {
   constructor() {
     super();
+    this.state = {};
   }
   render() {
     return (
@@ -17,12 +19,13 @@ class Form extends Component {
             onSubmit={(e) => {
               e.preventDefault();
               if (value.query === '') return;
-              return value.updateResults(value.query);
+              value.updateResults(value.query);
+              return this.props.history.push('/results/page/1');
             }}
           >
             <SearchInput />
             <SearchButton />
-            <SearchResults />
+            <Route path="/results" component={SearchResults} />
           </form>
         )}
       </Consumer>
