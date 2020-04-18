@@ -644,12 +644,12 @@ export class MyProvider extends Component {
       dispatch: (action, query) => {
         return this.setState({ query: query });
       },
-      updateResults: (query) => {
+      updateResults: (query, page = 1) => {
         instance
           .post('/goodreads', {
             method: 'GET',
             endpoint: '/search/index.xml',
-            parameters: { q: query, ['search[field]']: 'title' },
+            parameters: { q: query, ['search[field]']: 'title', page: page },
           })
           .then((results) => {
             const currentSearch = results.data.GoodreadsResponse.search;
@@ -663,12 +663,15 @@ export class MyProvider extends Component {
                 results: [currentSearch[0]['total-results']],
               },
             };
+            console.log('the page is: ', page, ' and the query: ', query);
             this.setState({
               query: query,
+              page: page,
               currentSearch: currentSearch,
               history: newHistory,
             });
-          });
+          })
+          .catch((error) => console.log(error));
       },
       toggleModal: (e, bookId) => {
         this.setState({ isModalOpen: !this.state.isModalOpen, bookId: bookId });

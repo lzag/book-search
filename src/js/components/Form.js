@@ -20,6 +20,7 @@ class Form extends Component {
               e.preventDefault();
               if (value.query === '') return;
               value.updateResults(value.query);
+              console.log('submit=', this.props.history);
               return this.props.history.push('/results/page/1');
             }}
           >
