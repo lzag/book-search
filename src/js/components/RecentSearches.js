@@ -23,6 +23,7 @@ class RecentSearches extends Component {
                       className={badgeClass}
                       results={item[1].results}
                       itemName={item[0]}
+                      history={this.props.history}
                     />
                   );
                 })}

@@ -4,6 +4,7 @@ import { Consumer } from './Context';
 
 class Header extends Component {
   render() {
+    console.log(this.props);
     return (
       <Consumer>
         {(value) => {

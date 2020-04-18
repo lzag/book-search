@@ -31,26 +31,34 @@ class App extends Component {
 
   render() {
     return (
-      <MyProvider value={this.state}>
-        <Router>
+      <Router>
+        <MyProvider value={this.state}>
           <div className="container">
             <Navbar />
             <button onClick={this.changeTheme.bind(this)}>Change theme</button>
             <ModalButton />
             <Modal />
             <Header />
-            <RecentSearches />
-            <Form />
-            <Stylesheet link={this.state.css} />
             <Switch>
-              <Route exact path="/" component={Header} />
               <Route path="/my-account" component={Form} />
+              <Route
+                path="/"
+                render={(props) => {
+                  return (
+                    <React.Fragment>
+                      <RecentSearches {...props} />
+                      <Form {...props} />
+                    </React.Fragment>
+                  );
+                }}
+              />
               <Route path="/about" component={About} />
               <Route component={NotFound} />
             </Switch>
+            <Stylesheet link={this.state.css} />
           </div>
-        </Router>
-      </MyProvider>
+        </MyProvider>
+      </Router>
     );
   }
 }

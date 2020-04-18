@@ -7,8 +7,9 @@ const instance = axios.create({
 });
 
 export class MyProvider extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(this.props);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.state = {
       isModalOpen: false,
@@ -643,12 +644,12 @@ export class MyProvider extends Component {
       dispatch: (action, query) => {
         return this.setState({ query: query });
       },
-      updateResults: (query) => {
+      updateResults: (query, page = 1) => {
         instance
           .post('/goodreads', {
             method: 'GET',
             endpoint: '/search/index.xml',
-            parameters: { q: query, ['search[field]']: 'title' },
+            parameters: { q: query, ['search[field]']: 'title', page: page },
           })
           .then((results) => {
             const currentSearch = results.data.GoodreadsResponse.search;
@@ -662,12 +663,15 @@ export class MyProvider extends Component {
                 results: [currentSearch[0]['total-results']],
               },
             };
-            return this.setState({
+            console.log('the page is: ', page, ' and the query: ', query);
+            this.setState({
               query: query,
+              page: page,
               currentSearch: currentSearch,
               history: newHistory,
             });
-          });
+          })
+          .catch((error) => console.log(error));
       },
       toggleModal: (e, bookId) => {
         this.setState({ isModalOpen: !this.state.isModalOpen, bookId: bookId });
