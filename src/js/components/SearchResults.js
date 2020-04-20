@@ -38,7 +38,7 @@ class SearchResults extends Component {
                   <ResultCard
                     key={result.id[0]}
                     id={result.best_book[0].id[0]}
-                    title={result.best_book[0].title}
+                    title={result.best_book[0].title[0]}
                     author={authorName}
                     rating={result.average_rating}
                     pubYear={result.original_publication_year}
