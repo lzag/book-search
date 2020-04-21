@@ -14,37 +14,41 @@ class SearchResults extends Component {
           }
           return (
             <React.Fragment>
-              <p>
-                There have been {value.currentSearch[0]['total-results']}{' '}
-                results for the query "{value.currentSearch[0].query}"
-              </p>
-              <Route
-                path="/results/page/:num"
-                render={(props) => {
-                  return (
-                    <Pagination
-                      {...props}
-                      results={value.currentSearch[0]['total-results']}
-                    />
-                  );
-                }}
-              />
-              {value.currentSearch[0].results[0].work.map((result) => {
-                let authorName =
-                  typeof result.best_book[0].author !== 'undefined'
-                    ? result.best_book[0].author[0].name
-                    : 'Unknown';
-                return (
-                  <ResultCard
-                    key={result.id[0]}
-                    id={result.best_book[0].id[0]}
-                    title={result.best_book[0].title[0]}
-                    author={authorName}
-                    rating={result.average_rating}
-                    pubYear={result.original_publication_year}
+              <div className="row justify-content-center">
+                <div className="col-12">
+                  <p>
+                    There have been {value.currentSearch[0]['total-results']}{' '}
+                    results for the query "{value.currentSearch[0].query}"
+                  </p>
+                  <Route
+                    path="/results/page/:num"
+                    render={(props) => {
+                      return (
+                        <Pagination
+                          {...props}
+                          results={value.currentSearch[0]['total-results']}
+                        />
+                      );
+                    }}
                   />
-                );
-              })}
+                  {value.currentSearch[0].results[0].work.map((result) => {
+                    let authorName =
+                      typeof result.best_book[0].author !== 'undefined'
+                        ? result.best_book[0].author[0].name
+                        : 'Unknown';
+                    return (
+                      <ResultCard
+                        key={result.id[0]}
+                        id={result.best_book[0].id[0]}
+                        title={result.best_book[0].title[0]}
+                        author={authorName}
+                        rating={result.average_rating}
+                        pubYear={result.original_publication_year}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
             </React.Fragment>
           );
         }}
