@@ -708,6 +708,14 @@ export class MyProvider extends Component {
   }
   componentDidMount() {
     window.addEventListener('keydown', this.onEscKeyDown, false);
+    let localConfig = localStorage.getItem('goodreads-app-config');
+    if (localStorage !== null) {
+      localConfig = JSON.parse(localConfig);
+      this.setState(localConfig);
+    }
+  }
+  componentDidUpdate() {
+    localStorage.setItem('goodreads-app-config', JSON.stringify(this.state));
   }
   onEscKeyDown(e) {
     if (e.key !== 'Escape') return;

@@ -19,9 +19,9 @@ class Navbar extends Component {
         {(value) => {
           return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <a className="navbar-brand" href="#">
+              <Link to="/" className="navbar-brand">
                 Goodreads Search and Report
-              </a>
+              </Link>
               <button
                 className="navbar-toggler"
                 type="button"
