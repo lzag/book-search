@@ -47,10 +47,10 @@ class ReviewsPreview extends Component {
   render() {
     if (this.state.isLoaded !== true && this.state.isError !== true) {
       return (
-        <div className="loader center">
+        <div className="loader center" style={{ justifyContent: 'center' }}>
           <i
             className="fa-5x fas fa-spinner fa-spin"
-            style={{ color: 'black' }}
+            style={{ color: 'black', justifyContent: 'center' }}
           ></i>
         </div>
       );
@@ -61,7 +61,12 @@ class ReviewsPreview extends Component {
         </div>
       );
     } else {
-      return <div dangerouslySetInnerHTML={this.getReviewsWidget()} />;
+      return (
+        <div
+          style={{ justifyContent: 'center' }}
+          dangerouslySetInnerHTML={this.getReviewsWidget()}
+        />
+      );
     }
   }
 }

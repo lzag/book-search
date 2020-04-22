@@ -20,7 +20,8 @@ class SearchInput extends Component {
         {(value) => (
           <div className="form-group">
             <label htmlFor="author-search-form">
-              Please input the author's name for the search
+              Please input the title you would like to search for in the
+              Goodreads database
             </label>
             <input
               value={this.state.value}
@@ -30,6 +31,7 @@ class SearchInput extends Component {
               id="author-search-form"
               type="text"
               placeholder="Please input the title of the book..."
+              className="form-control"
             />
           </div>
         )}

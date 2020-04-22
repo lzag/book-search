@@ -42,7 +42,7 @@ class ResultCard extends Component {
         {(value) => {
           console.log(title.length);
           return (
-            <div className="card" style={style}>
+            <div className="card w-100" style={style}>
               <div className="card-body">
                 <h5
                   onClick={(e) => {
@@ -68,12 +68,13 @@ class ResultCard extends Component {
                 <div style={{ display: this.state.collapsed }}>
                   <h6 className="card-subtitle mb-2 text-muted">{author}</h6>
                   <p className="card-text">
-                    The book was published originally in
-                    {pubYear} has a an average rating of {rating}
+                    {`The book was published originally in ` +
+                      `${pubYear} has a an average rating of ${rating}`}
                   </p>
                   <a href={href} className="card-link">
                     See on Goodreads
                   </a>
+                  <span> | </span>
                   <a
                     href="#"
                     onClick={(e) => {
@@ -83,7 +84,8 @@ class ResultCard extends Component {
                   >
                     Peek reviews on Goodreads
                   </a>
-                  <a href="#">More from {author}</a>
+                  <span> | </span>
+                  <a href="#"> More from {author}</a>
                 </div>
               </div>
             </div>

@@ -6,6 +6,12 @@ const instance = axios.create({
   baseURL: 'http://localhost:8888',
 });
 
+const themes = {
+  dark: '../../../src/css/bootstrap.min.css',
+  light: '../../../src/css/bootstrap-light.min.css',
+  sketchy: '../../../src/css/bootstrap-sketchy.min.css',
+};
+
 export class MyProvider extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +20,7 @@ export class MyProvider extends Component {
     this.state = {
       isModalOpen: false,
       theme: 'dark',
+      css: '../../../src/css/bootstrap.min.css',
       bookId: '2956',
       history: { Finn: { results: 800 }, Quijote: { results: 1000 } },
       currentSearch: [
@@ -682,10 +689,33 @@ export class MyProvider extends Component {
         // const newHistory = oldHistory.filter((item) => item !== el);
         this.setState({ history: history });
       },
+      toggleTheme: () => {
+        const activeThemes = Object.keys(themes);
+        const nextTheme = activeThemes.indexOf(this.state.theme) + 1;
+        if (nextTheme < activeThemes.length) {
+          this.setState({
+            theme: activeThemes[nextTheme],
+            css: themes[activeThemes[nextTheme]],
+          });
+        } else {
+          this.setState({
+            theme: activeThemes[0],
+            css: themes[activeThemes[0]],
+          });
+        }
+      },
     };
   }
   componentDidMount() {
     window.addEventListener('keydown', this.onEscKeyDown, false);
+    let localConfig = localStorage.getItem('goodreads-app-config');
+    if (localStorage !== null) {
+      localConfig = JSON.parse(localConfig);
+      this.setState(localConfig);
+    }
+  }
+  componentDidUpdate() {
+    localStorage.setItem('goodreads-app-config', JSON.stringify(this.state));
   }
   onEscKeyDown(e) {
     if (e.key !== 'Escape') return;
